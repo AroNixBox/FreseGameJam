@@ -134,4 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e223437c45f9a408d9d04b5fc54ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainCamera: {fileID: 0}
+  attackRange: 2
+  attackDamage: 100
+  attackDelay: 1
+  cam: {fileID: 0}

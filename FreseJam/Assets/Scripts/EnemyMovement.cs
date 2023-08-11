@@ -54,16 +54,17 @@ public class EnemyMovement : MonoBehaviour, IHealth
         if (other.gameObject.CompareTag("Beach"))
         {
             hasReachedBeach = true;
-            Debug.Log(walkSpeed);
+            //Adjust Walkspeed
         }
     }
 
-    private void OnCollisionStay(Collision other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Objective"))
         {
             if (!isAttacking)
             {
+                agent.isStopped = true;
                 isAttacking = true;
                 StartCoroutine(AttackCycle(other.gameObject.GetComponent<Objective>()));
             }
@@ -87,7 +88,6 @@ public class EnemyMovement : MonoBehaviour, IHealth
     
     private IEnumerator AttackCycle(Objective objective)
     {
-        Debug.Log(attackDamage);
         yield return new WaitForSeconds(attackDelay);
         objective.TakeDamage(attackDamage);
         isAttacking = false;

@@ -26,6 +26,6 @@ public class Objective : MonoBehaviour, IHealth
 
     public void Die()
     {
-        Debug.Log("Objective Died");
+        gameObject.SetActive(false);
     }
 }

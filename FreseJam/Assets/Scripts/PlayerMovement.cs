@@ -7,13 +7,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float attackRange = 2.0f;
     [SerializeField] private float attackDamage = 10f;
     [SerializeField] private float attackDelay = 1.0f;
+    [SerializeField] private Camera cam;
 
     private NavMeshAgent agent;
-    //current target
     private Transform enemyTarget;
+    private IHealth enemyHealth;
     private bool isAttacking = false;
-
-    [SerializeField] private Camera cam;
 
     private void Start()
     {
@@ -22,17 +21,27 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        HandleInput();
+        HandleCombat();
+    }
+
+    private void HandleInput()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            
+            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 5f);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
             {
-                Debug.Log(hit.collider);
+                Debug.Log(hit.collider.gameObject);
                 EnemyMovement enemy = hit.collider.GetComponent<EnemyMovement>();
                 if (enemy)
                 {
+                    
                     enemyTarget = hit.collider.transform;
+                    enemyHealth = hit.collider.GetComponent<IHealth>();
                     agent.SetDestination(enemyTarget.position);
                     isAttacking = true;
                 }
@@ -44,12 +53,10 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+    }
 
-        if (enemyTarget)
-        {
-            agent.SetDestination(enemyTarget.position);
-        }
-
+    private void HandleCombat()
+    {
         if (isAttacking && enemyTarget != null)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemyTarget.position);
@@ -58,6 +65,10 @@ public class PlayerMovement : MonoBehaviour
                 agent.SetDestination(transform.position);
                 AttackEnemy();
             }
+            else
+            {
+                agent.SetDestination(enemyTarget.position);
+            }
         }
     }
 
@@ -65,13 +76,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isAttacking) return;
 
-        enemyTarget.GetComponent<IHealth>().TakeDamage(attackDamage);
+        enemyHealth.TakeDamage(attackDamage);
         isAttacking = false;
-        Invoke("ResetAttack", attackDelay);
+
+        StartCoroutine(AttackCooldown());
     }
 
-    private void ResetAttack()
+    private System.Collections.IEnumerator AttackCooldown()
     {
+        yield return new WaitForSeconds(attackDelay);
         isAttacking = true;
     }
 }

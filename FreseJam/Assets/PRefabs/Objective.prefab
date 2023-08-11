@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 631833377460570642}
   - component: {fileID: 631833377460570643}
   - component: {fileID: 631833377460570640}
-  - component: {fileID: 631833377460570646}
   m_Layer: 0
   m_Name: Objective
   m_TagString: Objective
@@ -29,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 631833377460571117}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.64, y: 0.25, z: -12.34}
-  m_LocalScale: {x: 3.74, y: 3.74, z: 3.74}
+  m_LocalScale: {x: 2.0357618, y: 2.0357618, z: 2.0357618}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,16 +97,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
---- !u!65 &631833377460570646
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 631833377460571117}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
-  m_Center: {x: 0, y: 0, z: 0}
