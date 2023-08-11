@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Beach
+  - Objective
   layers:
   - Default
   - TransparentFX
