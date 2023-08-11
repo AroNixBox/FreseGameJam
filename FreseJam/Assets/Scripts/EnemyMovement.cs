@@ -73,6 +73,7 @@ public class EnemyMovement : MonoBehaviour, IHealth
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        Debug.Log("Enemy has taken" + damage + "Damage");
         if (currentHealth <= 0)
         {
             Die();
@@ -81,7 +82,7 @@ public class EnemyMovement : MonoBehaviour, IHealth
 
     public void Die()
     {
-        Debug.Log("Enemy Died");
+        gameObject.SetActive(false);
     }
     
     private IEnumerator AttackCycle(Objective objective)

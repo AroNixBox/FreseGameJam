@@ -4,29 +4,74 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class PlayerMovement : MonoBehaviour
 {
-    private NavMeshAgent _agent;
-    [SerializeField]  Camera _mainCamera;
+    [SerializeField] private float attackRange = 2.0f;
+    [SerializeField] private float attackDamage = 10f;
+    [SerializeField] private float attackDelay = 1.0f;
 
-    void Start()
+    private NavMeshAgent agent;
+    //current target
+    private Transform enemyTarget;
+    private bool isAttacking = false;
+
+    [SerializeField] private Camera cam;
+
+    private void Start()
     {
-        _agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            MovePlayer();
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                Debug.Log(hit.collider);
+                EnemyMovement enemy = hit.collider.GetComponent<EnemyMovement>();
+                if (enemy)
+                {
+                    enemyTarget = hit.collider.transform;
+                    agent.SetDestination(enemyTarget.position);
+                    isAttacking = true;
+                }
+                else
+                {
+                    agent.SetDestination(hit.point);
+                    isAttacking = false;
+                    enemyTarget = null;
+                }
+            }
+        }
+
+        if (enemyTarget)
+        {
+            agent.SetDestination(enemyTarget.position);
+        }
+
+        if (isAttacking && enemyTarget != null)
+        {
+            float distanceToEnemy = Vector3.Distance(transform.position, enemyTarget.position);
+            if (distanceToEnemy <= attackRange)
+            {
+                agent.SetDestination(transform.position);
+                AttackEnemy();
+            }
         }
     }
 
-    void MovePlayer()
+    private void AttackEnemy()
     {
-        RaycastHit hit;
+        if (!isAttacking) return;
 
-        if (Physics.Raycast(_mainCamera.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity))
-        {
-            _agent.SetDestination(hit.point);
-        }
+        enemyTarget.GetComponent<IHealth>().TakeDamage(attackDamage);
+        isAttacking = false;
+        Invoke("ResetAttack", attackDelay);
+    }
+
+    private void ResetAttack()
+    {
+        isAttacking = true;
     }
 }
