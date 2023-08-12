@@ -47,7 +47,9 @@ public class GameManager : MonoBehaviour
 
     public void SpawnBloodParticleOnDeadCrewMember(Transform crewmemberPosition)
     {
-        Instantiate(bloodFX, crewmemberPosition.position, crewmemberPosition.rotation);
+        //Remove if errors in build
+        if(Application.isPlaying)
+            Instantiate(bloodFX, crewmemberPosition.position, crewmemberPosition.rotation);
     }
 
     public void IncreaseKillCount()
@@ -94,7 +96,12 @@ public class GameManager : MonoBehaviour
     public void InstantiatePeopleDieSound()
     {
         int randomIndex = Random.Range(0, dieSounds.Length);
-        dieSounds[randomIndex].Play();
+        //Remove if errors in build
+        if (Application.isPlaying)
+        {
+            dieSounds[randomIndex].Play();
+        }
+
     }
 
     public Objective AssignRandomObjective()
