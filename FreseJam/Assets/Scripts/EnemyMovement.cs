@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMovement : MonoBehaviour, IHealth
@@ -42,7 +43,7 @@ public class EnemyMovement : MonoBehaviour, IHealth
 
     void Update()
     {
-        if (isDead)
+        if (isDead == true)
             return;
         
         if (isAttacking)
@@ -98,7 +99,7 @@ public class EnemyMovement : MonoBehaviour, IHealth
         {
             if (!isAttacking)
             {
-                if(isDead)
+                if(isDead == true)
                     return;
                 
                 agent.isStopped = true;
@@ -122,6 +123,7 @@ public class EnemyMovement : MonoBehaviour, IHealth
     {
         isDead = true;
         agent.isStopped = true;
+        gameObject.GetComponent<BoxCollider>().enabled = false;
         StartCoroutine(CR_Die());
     }
 
@@ -134,13 +136,20 @@ public class EnemyMovement : MonoBehaviour, IHealth
 
     private IEnumerator AttackCycle(Objective objective)
     {
+
         yield return new WaitForSeconds(attackDelay);
-        _audioSource.Play();
-        Instantiate(blood, particlesDiePosition.position, particlesDiePosition.rotation);
-        //Add Eating Sound + Vfx?
-        objective.TakeDamage(attackDamage);
-        agent.isStopped = false;
-        isAttacking = false;
+        if (isDead == false)
+        {
+            _audioSource.Play();
+            Instantiate(blood, particlesDiePosition.position, particlesDiePosition.rotation);
+            //Add Eating Sound + Vfx?
+            objective.TakeDamage(attackDamage); 
+            agent.isStopped = false;
+            isAttacking = false;    
+        }
+       
+        
+       
     }
 
 }
