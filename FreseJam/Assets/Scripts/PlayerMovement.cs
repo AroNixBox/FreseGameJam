@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -92,6 +93,18 @@ public class PlayerMovement : MonoBehaviour
             {
                 agent.SetDestination(enemyTarget.position);
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            enemyTarget = other.gameObject.transform;
+            enemyHealth = other.gameObject.GetComponent<IHealth>();
+            agent.SetDestination(enemyTarget.position);
+            AttackEnemy();
+            isChasingEnemy = true;
         }
     }
 
