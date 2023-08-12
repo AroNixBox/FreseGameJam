@@ -75,6 +75,7 @@ public class EnemyMovement : MonoBehaviour, IHealth
 
     private void UpdateTarget()
     {
+ 
         currentObjective = GameManager.Instance.AssignRandomObjective();
         anim.SetBool("isEating", false);
         if (currentObjective)

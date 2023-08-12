@@ -123,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(attackDelay);
         PlayRandomAttackSound();
         enemyHealth.TakeDamage(attackDamage);
+        GameManager.Instance.IncreaseKillCount();
         anim.SetBool("isAttacking", false);
         isAttacking = false;
         isChasingEnemy = true;

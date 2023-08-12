@@ -1,5 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Resources;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -10,6 +15,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Transform player;
     [SerializeField] private AudioSource[] dieSounds;
+    [SerializeField] private TextMeshProUGUI crewCount;
+    [SerializeField] private TextMeshProUGUI killCount;
+    private int playerKills = 0;
+
 
     private void Awake()
     {
@@ -30,6 +39,37 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        crewCount.text = "x" + objectives.Count;
+        killCount.text = "x" + playerKills;
+    }
+
+    public void IncreaseKillCount()
+    {
+        playerKills += 1;
+        killCount.text = "x" + playerKills;
+    }
+
+    public void UpdateCrew()
+    {
+        crewCount.text = "x" + objectives.Count;
+        if (objectives.Count <= 0)
+        {
+            SceneManager.LoadScene("Lose");
+            Destroy(gameObject);
+        }
+    }
+
+    public int GetKillAmount()
+    {
+        return playerKills;
+    }
+
+    public void DestroyGameManager()
+    {
+        Destroy(this.gameObject);
+    }
     public Transform PlayersLocation()
     {
         return player;
@@ -54,6 +94,7 @@ public class GameManager : MonoBehaviour
 
     public Objective AssignRandomObjective()
     {
+        UpdateCrew();
         if (objectives.Count == 0) return null;
 
         int randomIndex = Random.Range(0, objectives.Count);
