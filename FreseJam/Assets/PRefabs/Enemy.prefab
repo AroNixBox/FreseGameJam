@@ -95,6 +95,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4535197386767895350}
+  - component: {fileID: 6573537076746643720}
   m_Layer: 0
   m_Name: Sharkking
   m_TagString: Untagged
@@ -110,8 +111,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3871848086869692812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.75, z: -0.15}
-  m_LocalScale: {x: 0.39873374, y: 0.39873374, z: 0.39873374}
+  m_LocalPosition: {x: 0, y: -1.049, z: -0.20066}
+  m_LocalScale: {x: 0.2894807, y: 0.2894807, z: 0.2894807}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4773979073049222056}
@@ -119,6 +120,27 @@ Transform:
   m_Father: {fileID: 8481823193586245200}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &6573537076746643720
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3871848086869692812}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88a9a9cac47983e428341fa606920dd8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4645500975824008057
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +363,7 @@ MonoBehaviour:
   swimSpeed: 3
   walkSpeed: 1.1
   maxHealth: 100
-  Objective: {fileID: 0}
+  anim: {fileID: 6573537076746643720}
 --- !u!54 &8481823193586245203
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -27,8 +27,8 @@ public class EnemyMovement : MonoBehaviour, IHealth
     private NavMeshAgent agent;
     private Objective currentObjective;
     private bool hasReachedBeach;
-    
 
+    [SerializeField] private Animator anim;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -66,9 +66,11 @@ public class EnemyMovement : MonoBehaviour, IHealth
     private void UpdateTarget()
     {
         currentObjective = GameManager.Instance.AssignRandomObjective();
+        anim.SetBool("isEating", false);
         if (currentObjective)
         {
             agent.SetDestination(currentObjective.transform.position);
+
         }
     }
 
@@ -76,6 +78,7 @@ public class EnemyMovement : MonoBehaviour, IHealth
     {
         if (other.gameObject.CompareTag("Beach"))
         {
+            anim.SetBool("isWalking", true);
             hasReachedBeach = true;
             //Adjust Walkspeed
         }
@@ -89,6 +92,7 @@ public class EnemyMovement : MonoBehaviour, IHealth
             {
                 agent.isStopped = true;
                 isAttacking = true;
+                anim.SetBool("isEating", true);
                 StartCoroutine(AttackCycle(other.gameObject.GetComponent<Objective>()));
             }
         }
