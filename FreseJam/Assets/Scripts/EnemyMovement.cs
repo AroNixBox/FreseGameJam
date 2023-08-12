@@ -24,6 +24,7 @@ public class EnemyMovement : MonoBehaviour, IHealth
     [SerializeField] private Transform particlesDiePosition;
     private float currentHealth;
     private bool isAttacking = false;
+    private bool isDead = false;
     public float MaxHealth => maxHealth;
     public float CurrentHealth => currentHealth;
     
@@ -41,6 +42,9 @@ public class EnemyMovement : MonoBehaviour, IHealth
 
     void Update()
     {
+        if (isDead)
+            return;
+        
         if (isAttacking)
         {
             return;
@@ -94,6 +98,9 @@ public class EnemyMovement : MonoBehaviour, IHealth
         {
             if (!isAttacking)
             {
+                if(isDead)
+                    return;
+                
                 agent.isStopped = true;
                 isAttacking = true;
                 anim.SetBool("isEating", true);
@@ -113,9 +120,18 @@ public class EnemyMovement : MonoBehaviour, IHealth
 
     public void Die()
     {
+        isDead = true;
+        agent.isStopped = true;
+        StartCoroutine(CR_Die());
+    }
+
+    private IEnumerator CR_Die()
+    {
+        anim.SetBool("Die", true);
+        yield return new WaitForSeconds(2f);
         gameObject.SetActive(false);
     }
-    
+
     private IEnumerator AttackCycle(Objective objective)
     {
         yield return new WaitForSeconds(attackDelay);

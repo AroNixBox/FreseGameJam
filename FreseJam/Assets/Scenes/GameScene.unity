@@ -10939,34 +10939,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f53bd46e3b420c2449dfc058c442d4a9, type: 3}
---- !u!1 &2672987029795380499 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8770826323448251077, guid: c7f3987945d53454c820f7a17684558f, type: 3}
-  m_PrefabInstance: {fileID: 6674448554119487446}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2672987029795380500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2672987029795380499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 608d15e82b4680d459baefccb3030af2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followPosition: {fileID: 1357757320}
-  player: {fileID: 1118130767}
-  followDistance: 1
-  followSpeed: 3
-  anim: {fileID: 3267158889896610290}
-  rightOffset: 1.1
---- !u!95 &3267158889896610290 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8212067817322010148, guid: c7f3987945d53454c820f7a17684558f, type: 3}
-  m_PrefabInstance: {fileID: 6674448554119487446}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4676000703123493081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11277,18 +11249,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1003942128292986927, guid: c7f3987945d53454c820f7a17684558f, type: 3}
-      propertyPath: m_Height
-      value: 0.8856204
-      objectReference: {fileID: 0}
-    - target: {fileID: 1003942128292986927, guid: c7f3987945d53454c820f7a17684558f, type: 3}
-      propertyPath: m_Center.y
-      value: 0.057189714
-      objectReference: {fileID: 0}
-    - target: {fileID: 8212067817322010148, guid: c7f3987945d53454c820f7a17684558f, type: 3}
-      propertyPath: m_Controller
+    - target: {fileID: 2672987029795380500, guid: c7f3987945d53454c820f7a17684558f, type: 3}
+      propertyPath: player
       value: 
-      objectReference: {fileID: 9100000, guid: aa7fd3ba8f216084c9bb5019f8f112f2, type: 2}
+      objectReference: {fileID: 1118130767}
+    - target: {fileID: 2672987029795380500, guid: c7f3987945d53454c820f7a17684558f, type: 3}
+      propertyPath: followPosition
+      value: 
+      objectReference: {fileID: 1357757320}
     - target: {fileID: 8770826323448251077, guid: c7f3987945d53454c820f7a17684558f, type: 3}
       propertyPath: m_Name
       value: CamFollowGUy
