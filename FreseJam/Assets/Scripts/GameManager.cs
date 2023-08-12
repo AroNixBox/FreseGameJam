@@ -5,12 +5,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField]
-    private List<Objective> objectives = new List<Objective>();
+    private List<Transform> objectives = new List<Transform>();
 
     private void Awake()
     {
-        // Singleton Setup
         if (Instance == null)
         {
             Instance = this;
@@ -22,8 +20,23 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // Find all objectives
-        objectives.AddRange(GameObject.FindObjectsOfType<Objective>());
+        foreach (var objective in GameObject.FindObjectsOfType<Objective>())
+        {
+            objectives.Add(objective.transform);
+        }
     }
-    
+
+    //ObjectiveGetsDestroyed
+    public void ObjectiveDestroyed(Objective destroyedObjective)
+    {
+        objectives.Remove(destroyedObjective.transform);
+    }
+
+    public Transform AssignRandomObjective()
+    {
+        if (objectives.Count == 0) return null;
+
+        int randomIndex = Random.Range(0, objectives.Count);
+        return objectives[randomIndex];
+    }
 }
