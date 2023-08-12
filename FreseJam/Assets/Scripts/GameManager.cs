@@ -25,5 +25,5 @@ public class GameManager : MonoBehaviour
         // Find all objectives
         objectives.AddRange(GameObject.FindObjectsOfType<Objective>());
     }
-    
+
 }
