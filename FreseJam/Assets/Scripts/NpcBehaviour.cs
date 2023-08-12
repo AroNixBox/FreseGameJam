@@ -4,8 +4,6 @@ using UnityEngine;
 public class NpcBehaviour : MonoBehaviour
 {
     private Transform player;
-    [SerializeField] private Transform diePoisition;
-    [SerializeField] private GameObject dieParticles;
 
     private void Start()
     {
@@ -24,7 +22,7 @@ public class NpcBehaviour : MonoBehaviour
 
     private void OnDestroy()
     {
-        Instantiate(dieParticles, diePoisition.position, diePoisition.rotation);
+        GameManager.Instance.SpawnBloodParticleOnDeadCrewMember(transform);
         GameManager.Instance.InstantiatePeopleDieSound();
     }
 }

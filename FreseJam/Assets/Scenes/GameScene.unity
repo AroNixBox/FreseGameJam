@@ -11206,6 +11206,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1118130767}
     - target: {fileID: 4676000702449738734, guid: e7a0fcc804d0e7d439705c7b2aa76608, type: 3}
+      propertyPath: bloodFX
+      value: 
+      objectReference: {fileID: 6604811499917114257, guid: 38429e135a8728e4aadd9532a79acc32, type: 3}
+    - target: {fileID: 4676000702449738734, guid: e7a0fcc804d0e7d439705c7b2aa76608, type: 3}
       propertyPath: crewCount
       value: 
       objectReference: {fileID: 2121902349}

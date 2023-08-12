@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class CamFollow : MonoBehaviour
 {
@@ -53,5 +51,11 @@ public class CamFollow : MonoBehaviour
         }
 
         lastPosition = transform.position;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.SpawnBloodParticleOnDeadCrewMember(transform);
+        GameManager.Instance.InstantiatePeopleDieSound();
     }
 }

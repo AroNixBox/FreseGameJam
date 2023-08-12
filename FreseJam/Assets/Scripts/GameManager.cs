@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Resources;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -17,6 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource[] dieSounds;
     [SerializeField] private TextMeshProUGUI crewCount;
     [SerializeField] private TextMeshProUGUI killCount;
+    [SerializeField] public GameObject bloodFX;
+    
     private int playerKills = 0;
 
 
@@ -43,6 +43,11 @@ public class GameManager : MonoBehaviour
     {
         crewCount.text = "x" + objectives.Count;
         killCount.text = "x" + playerKills;
+    }
+
+    public void SpawnBloodParticleOnDeadCrewMember(Transform crewmemberPosition)
+    {
+        Instantiate(bloodFX, crewmemberPosition.position, crewmemberPosition.rotation);
     }
 
     public void IncreaseKillCount()
