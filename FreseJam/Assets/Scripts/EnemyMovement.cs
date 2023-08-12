@@ -43,7 +43,6 @@ public class EnemyMovement : MonoBehaviour, IHealth
     {
         if (isAttacking)
         {
-            Debug.Log("Returning");
             return;
         }
 

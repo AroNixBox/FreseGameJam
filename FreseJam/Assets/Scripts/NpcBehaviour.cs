@@ -1,15 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
+
 
 public class NpcBehaviour : MonoBehaviour
 {
     private Transform player;
     [SerializeField] private Transform diePoisition;
     [SerializeField] private GameObject dieParticles;
-    [SerializeField] private AudioSource[] dieSounds;
 
     private void Start()
     {
@@ -29,7 +25,6 @@ public class NpcBehaviour : MonoBehaviour
     private void OnDestroy()
     {
         Instantiate(dieParticles, diePoisition.position, diePoisition.rotation);
-        //int randomIndex = Random.Range(0, dieSounds.Length);
-        //dieSounds[randomIndex].Play();
+        GameManager.Instance.InstantiatePeopleDieSound();
     }
 }

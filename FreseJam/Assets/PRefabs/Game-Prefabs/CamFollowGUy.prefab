@@ -851,7 +851,7 @@ GameObject:
   - component: {fileID: 8770826323448251192}
   - component: {fileID: 1003942128292986927}
   - component: {fileID: 7902303825845581059}
-  - component: {fileID: -3633445385584813343}
+  - component: {fileID: 2672987029795380500}
   m_Layer: 0
   m_Name: CamFollowGUy
   m_TagString: Objective
@@ -949,9 +949,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 0.8856204
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.057189714, z: 0}
 --- !u!54 &7902303825845581059
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -968,7 +968,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &-3633445385584813343
+--- !u!114 &2672987029795380500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -977,9 +977,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8770826323448251077}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaaf549653c01624899d2435be16422f, type: 3}
+  m_Script: {fileID: 11500000, guid: 608d15e82b4680d459baefccb3030af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followPosition: {fileID: 0}
+  player: {fileID: 0}
+  followDistance: 1
+  followSpeed: 3
+  anim: {fileID: 8212067817322010148}
+  rightOffset: 1.1
 --- !u!1 &8825722283183442370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,7 +1169,7 @@ Animator:
   m_GameObject: {fileID: 9022480241689954039}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6ff13d8ed507af34bb5ebc59418a9511, type: 2}
+  m_Controller: {fileID: 9100000, guid: aa7fd3ba8f216084c9bb5019f8f112f2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

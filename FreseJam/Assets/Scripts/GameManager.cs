@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour
     private List<Objective> objectives = new List<Objective>();
 
     [SerializeField] private Transform player;
+    [SerializeField] private AudioSource[] dieSounds;
 
     private void Awake()
     {
@@ -42,6 +44,12 @@ public class GameManager : MonoBehaviour
             Destroy(destroyedObjective.gameObject);
         }
 
+    }
+
+    public void InstantiatePeopleDieSound()
+    {
+        int randomIndex = Random.Range(0, dieSounds.Length);
+        dieSounds[randomIndex].Play();
     }
 
     public Objective AssignRandomObjective()
