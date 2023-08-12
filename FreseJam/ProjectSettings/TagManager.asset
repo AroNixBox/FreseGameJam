@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Beach
   - Objective
+  - Enemy
   layers:
   - Default
   - TransparentFX
