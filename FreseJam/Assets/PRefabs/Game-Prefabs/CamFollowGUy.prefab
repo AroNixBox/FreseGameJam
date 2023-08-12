@@ -851,6 +851,7 @@ GameObject:
   - component: {fileID: 8770826323448251192}
   - component: {fileID: 1003942128292986927}
   - component: {fileID: 7902303825845581059}
+  - component: {fileID: -3633445385584813343}
   m_Layer: 0
   m_Name: CamFollowGUy
   m_TagString: Objective
@@ -967,6 +968,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &-3633445385584813343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8770826323448251077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaaf549653c01624899d2435be16422f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8825722283183442370
 GameObject:
   m_ObjectHideFlags: 0

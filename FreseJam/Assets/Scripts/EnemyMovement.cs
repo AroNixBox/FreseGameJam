@@ -19,6 +19,9 @@ public class EnemyMovement : MonoBehaviour, IHealth
     [SerializeField] private float swimSpeed = 3f;
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private GameObject blood;
+    [SerializeField] private Transform particlesDiePosition;
     private float currentHealth;
     private bool isAttacking = false;
     public float MaxHealth => maxHealth;
@@ -73,7 +76,6 @@ public class EnemyMovement : MonoBehaviour, IHealth
         if (currentObjective)
         {
             agent.SetDestination(currentObjective.transform.position);
-
         }
     }
 
@@ -104,7 +106,6 @@ public class EnemyMovement : MonoBehaviour, IHealth
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        Debug.Log("Enemy has taken" + damage + "Damage");
         if (currentHealth <= 0)
         {
             Die();
@@ -119,6 +120,9 @@ public class EnemyMovement : MonoBehaviour, IHealth
     private IEnumerator AttackCycle(Objective objective)
     {
         yield return new WaitForSeconds(attackDelay);
+        _audioSource.Play();
+        Instantiate(blood, particlesDiePosition.position, particlesDiePosition.rotation);
+        //Add Eating Sound + Vfx?
         objective.TakeDamage(attackDamage);
         agent.isStopped = false;
         isAttacking = false;

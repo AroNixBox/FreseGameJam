@@ -60,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
             {
-                Debug.Log(hit.collider.gameObject);
                 EnemyMovement enemy = hit.collider.GetComponent<EnemyMovement>();
                 if (enemy)
                 {
