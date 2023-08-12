@@ -59,8 +59,11 @@ public class EnemyMovement : MonoBehaviour, IHealth
             agent.SetDestination(currentObjective.transform.position);
         else
             agent.isStopped = true;
-    
-        
+
+        if (agent.velocity.magnitude > 0.1f)
+        {
+            anim.SetBool("isEating", false);
+        }
     }
 
     private void UpdateTarget()
