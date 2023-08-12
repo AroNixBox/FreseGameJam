@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    private List<Transform> objectives = new List<Transform>();
+    private List<Objective> objectives = new List<Objective>();
 
     private void Awake()
     {
@@ -22,17 +22,22 @@ public class GameManager : MonoBehaviour
 
         foreach (var objective in GameObject.FindObjectsOfType<Objective>())
         {
-            objectives.Add(objective.transform);
+            objectives.Add(objective);
         }
     }
 
     //ObjectiveGetsDestroyed
     public void ObjectiveDestroyed(Objective destroyedObjective)
     {
-        objectives.Remove(destroyedObjective.transform);
+        if (destroyedObjective)
+        {
+            objectives.Remove(destroyedObjective);
+            Destroy(destroyedObjective.gameObject);
+        }
+
     }
 
-    public Transform AssignRandomObjective()
+    public Objective AssignRandomObjective()
     {
         if (objectives.Count == 0) return null;
 

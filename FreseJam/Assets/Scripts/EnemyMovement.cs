@@ -25,7 +25,7 @@ public class EnemyMovement : MonoBehaviour, IHealth
     public float CurrentHealth => currentHealth;
     
     private NavMeshAgent agent;
-    private Transform Objective;
+    private Objective currentObjective;
     private bool hasReachedBeach;
     
 
@@ -38,11 +38,6 @@ public class EnemyMovement : MonoBehaviour, IHealth
 
     void Update()
     {
-        if (!Objective)
-        {
-            UpdateTarget();    
-        }
-        
         if (isAttacking)
         {
             Debug.Log("Returning");
@@ -54,24 +49,26 @@ public class EnemyMovement : MonoBehaviour, IHealth
             currentState = MovementState.Walking;
             agent.speed = walkSpeed;
         }
-
-        if (Objective)
+        
+        if (!currentObjective || !currentObjective.gameObject.activeSelf)
         {
-            agent.SetDestination(Objective.position);
+            UpdateTarget();    
         }
 
+        if (currentObjective)
+            agent.SetDestination(currentObjective.transform.position);
+        else
+            agent.isStopped = true;
+    
+        
     }
 
     private void UpdateTarget()
     {
-        Objective = GameManager.Instance.AssignRandomObjective();
-        if (Objective)
+        currentObjective = GameManager.Instance.AssignRandomObjective();
+        if (currentObjective)
         {
-            agent.SetDestination(Objective.position);
-        }
-        else
-        {
-            agent.isStopped = true;
+            agent.SetDestination(currentObjective.transform.position);
         }
     }
 
@@ -116,6 +113,7 @@ public class EnemyMovement : MonoBehaviour, IHealth
     {
         yield return new WaitForSeconds(attackDelay);
         objective.TakeDamage(attackDamage);
+        agent.isStopped = false;
         isAttacking = false;
     }
 
