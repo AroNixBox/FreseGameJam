@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 69506023804038185}
   - component: {fileID: 69506023804038190}
-  - component: {fileID: 69506023804038191}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -56,11 +55,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: -14.8
+  far clip plane: 999.35
   field of view: 60
   orthographic: 1
-  orthographic size: 8.2
+  orthographic size: 6.71
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -76,14 +75,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &69506023804038191
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 69506023804038188}
-  m_Enabled: 1
 --- !u!1 &69506024076090419
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 69506024076090418}
+  - component: {fileID: 360868873}
   m_Layer: 0
   m_Name: Camera Pivot
   m_TagString: Untagged
@@ -107,7 +99,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69506024076090419}
-  m_LocalRotation: {x: 0.10809104, y: 0.8776561, z: -0.23516732, w: 0.4034011}
+  m_LocalRotation: {x: 0.10809043, y: 0.8776572, z: -0.23516756, w: 0.4033989}
   m_LocalPosition: {x: -1.6158881, y: 0, z: -8.458808}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -116,3 +108,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30, y: 130.63, z: 0}
+--- !u!114 &360868873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69506024076090419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78e56d17457e73488ab3b522eef0f31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}

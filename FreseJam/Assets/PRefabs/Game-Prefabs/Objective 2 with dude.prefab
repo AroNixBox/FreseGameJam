@@ -146,6 +146,8 @@ MonoBehaviour:
   player: {fileID: 0}
   followDistance: 2
   followSpeed: 2
+  anim: {fileID: 0}
+  rightOffset: 1
 --- !u!1001 &852003574988765582
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 
     private List<Objective> objectives = new List<Objective>();
 
+    [SerializeField] private Transform player;
+
     private void Awake()
     {
         if (Instance == null)
@@ -24,6 +26,11 @@ public class GameManager : MonoBehaviour
         {
             objectives.Add(objective);
         }
+    }
+
+    public Transform PlayersLocation()
+    {
+        return player;
     }
 
     //ObjectiveGetsDestroyed

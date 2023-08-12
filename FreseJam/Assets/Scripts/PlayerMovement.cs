@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class PlayerMovement : MonoBehaviour
@@ -14,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Animator anim;
     private bool isAttacking = false;
+    
+    [SerializeField] private AudioSource[] attackSources;
     
     private NavMeshAgent agent;
     private Transform enemyTarget;
@@ -57,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
             {
-                Debug.Log(hit.collider.gameObject);
                 EnemyMovement enemy = hit.collider.GetComponent<EnemyMovement>();
                 if (enemy)
                 {
@@ -119,9 +121,16 @@ public class PlayerMovement : MonoBehaviour
         isAttacking = true;
         anim.SetBool("isAttacking", true);
         yield return new WaitForSeconds(attackDelay);
+        PlayRandomAttackSound();
         enemyHealth.TakeDamage(attackDamage);
         anim.SetBool("isAttacking", false);
         isAttacking = false;
         isChasingEnemy = true;
+    }
+    
+    private void PlayRandomAttackSound()
+    {
+        int randomIndex = Random.Range(0, attackSources.Length);
+        attackSources[randomIndex].Play();
     }
 }
