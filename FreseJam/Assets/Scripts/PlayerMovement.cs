@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class PlayerMovement : MonoBehaviour
@@ -9,10 +11,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float attackDelay = 1.0f;
     [SerializeField] private Camera cam;
 
+    [SerializeField] private Animator anim;
+    private bool isAttacking = false;
+    
     private NavMeshAgent agent;
     private Transform enemyTarget;
     private IHealth enemyHealth;
-    private bool isAttacking = false;
+    private bool isChasingEnemy = false;
 
     private void Start()
     {
@@ -22,7 +27,23 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         HandleInput();
+        if (agent.velocity.magnitude < 0.1f && !isAttacking)
+        {
+            anim.SetBool("isRunning", false);
+            anim.SetBool("isAttacking", false);
+            return;
+        }
         HandleCombat();
+
+
+        if (agent.velocity.magnitude > 0.1f)
+        {
+            anim.SetBool("isRunning", true);
+        }
+        else
+        {
+            anim.SetBool("isRunning", false);
+        }
     }
 
     private void HandleInput()
@@ -43,21 +64,23 @@ public class PlayerMovement : MonoBehaviour
                     enemyTarget = hit.collider.transform;
                     enemyHealth = hit.collider.GetComponent<IHealth>();
                     agent.SetDestination(enemyTarget.position);
-                    isAttacking = true;
+                    isChasingEnemy = true;
                 }
                 else
                 {
                     agent.SetDestination(hit.point);
-                    isAttacking = false;
+                    isChasingEnemy = false;
                     enemyTarget = null;
                 }
+                
             }
         }
+
     }
 
     private void HandleCombat()
     {
-        if (isAttacking && enemyTarget != null)
+        if (isChasingEnemy && enemyTarget != null)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemyTarget.position);
             if (distanceToEnemy <= attackRange)
@@ -74,17 +97,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void AttackEnemy()
     {
-        if (!isAttacking) return;
-
-        enemyHealth.TakeDamage(attackDamage);
-        isAttacking = false;
-
+        if(isAttacking) return; // Prevents the function from executing if already attacking
         StartCoroutine(AttackCooldown());
     }
 
-    private System.Collections.IEnumerator AttackCooldown()
+    private IEnumerator AttackCooldown()
     {
-        yield return new WaitForSeconds(attackDelay);
         isAttacking = true;
+        anim.SetBool("isAttacking", true);
+        yield return new WaitForSeconds(attackDelay);
+        enemyHealth.TakeDamage(attackDamage);
+        anim.SetBool("isAttacking", false);
+        isAttacking = false;
+        isChasingEnemy = true;
     }
 }
