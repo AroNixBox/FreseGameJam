@@ -11260,15 +11260,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4676000702449738720, guid: e7a0fcc804d0e7d439705c7b2aa76608, type: 3}
       propertyPath: initialSpawnDelay
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4676000702449738720, guid: e7a0fcc804d0e7d439705c7b2aa76608, type: 3}
       propertyPath: minimumSpawnDelay
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4676000702449738720, guid: e7a0fcc804d0e7d439705c7b2aa76608, type: 3}
       propertyPath: spawnReductionRate
-      value: 0.9
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 4676000702449738720, guid: e7a0fcc804d0e7d439705c7b2aa76608, type: 3}
       propertyPath: spawnPoints.Array.data[0]
