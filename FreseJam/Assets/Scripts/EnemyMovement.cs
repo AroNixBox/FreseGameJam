@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMovement : MonoBehaviour, IHealth
@@ -19,8 +20,12 @@ public class EnemyMovement : MonoBehaviour, IHealth
     [SerializeField] private float swimSpeed = 3f;
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private GameObject blood;
+    [SerializeField] private Transform particlesDiePosition;
     private float currentHealth;
     private bool isAttacking = false;
+    private bool isDead = false;
     public float MaxHealth => maxHealth;
     public float CurrentHealth => currentHealth;
     
@@ -38,9 +43,11 @@ public class EnemyMovement : MonoBehaviour, IHealth
 
     void Update()
     {
+        if (isDead == true)
+            return;
+        
         if (isAttacking)
         {
-            Debug.Log("Returning");
             return;
         }
 
@@ -59,18 +66,21 @@ public class EnemyMovement : MonoBehaviour, IHealth
             agent.SetDestination(currentObjective.transform.position);
         else
             agent.isStopped = true;
-    
-        
+
+        if (agent.velocity.magnitude > 0.1f)
+        {
+            anim.SetBool("isEating", false);
+        }
     }
 
     private void UpdateTarget()
     {
+ 
         currentObjective = GameManager.Instance.AssignRandomObjective();
         anim.SetBool("isEating", false);
         if (currentObjective)
         {
             agent.SetDestination(currentObjective.transform.position);
-
         }
     }
 
@@ -90,6 +100,9 @@ public class EnemyMovement : MonoBehaviour, IHealth
         {
             if (!isAttacking)
             {
+                if(isDead == true)
+                    return;
+                
                 agent.isStopped = true;
                 isAttacking = true;
                 anim.SetBool("isEating", true);
@@ -101,7 +114,6 @@ public class EnemyMovement : MonoBehaviour, IHealth
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        Debug.Log("Enemy has taken" + damage + "Damage");
         if (currentHealth <= 0)
         {
             Die();
@@ -110,15 +122,35 @@ public class EnemyMovement : MonoBehaviour, IHealth
 
     public void Die()
     {
+        isDead = true;
+        agent.isStopped = true;
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        StartCoroutine(CR_Die());
+    }
+
+    private IEnumerator CR_Die()
+    {
+        anim.SetBool("Die", true);
+        yield return new WaitForSeconds(2f);
         gameObject.SetActive(false);
     }
-    
+
     private IEnumerator AttackCycle(Objective objective)
     {
+
         yield return new WaitForSeconds(attackDelay);
-        objective.TakeDamage(attackDamage);
-        agent.isStopped = false;
-        isAttacking = false;
+        if (isDead == false)
+        {
+            _audioSource.Play();
+            Instantiate(blood, particlesDiePosition.position, particlesDiePosition.rotation);
+            //Add Eating Sound + Vfx?
+            objective.TakeDamage(attackDamage); 
+            agent.isStopped = false;
+            isAttacking = false;    
+        }
+       
+        
+       
     }
 
 }
