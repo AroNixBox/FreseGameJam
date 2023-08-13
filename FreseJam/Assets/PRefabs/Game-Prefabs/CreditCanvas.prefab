@@ -67,7 +67,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Programming\n\nLevel Design\n\n3DArt & Animation\n\n\nSound\n\nAnimations
-    \n\nShader \n\n\n\n\n\n\nTextures"
+    \n\nShader \n\n\n\n\n\n\nTextures\n\n\nBoat Model"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -223,7 +223,13 @@ MonoBehaviour:
     Shader Kit: https://assetstore.unity.com/packages/vfx/shaders/psx-shader-kit-183591?aid=1101l9Bhe&utm_campaign=unity_affiliate&utm_medium=affiliate&utm_source=partnerize-linkmaker
 
 
-    Pixabay.com'
+    Pixabay.com
+
+    Unity
+    Asset Store
+
+
+    Polygon - Sampler Pack (unity Asset Store)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
