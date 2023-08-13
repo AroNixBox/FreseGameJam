@@ -110,6 +110,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("OrcaBoss"))
+        {
+            enemyTarget = other.gameObject.transform;
+            enemyHealth = other.gameObject.GetComponent<IHealth>();
+            agent.SetDestination(enemyTarget.position);
+            AttackEnemy();
+            isChasingEnemy = true;
+        }
+    }
+
     private void AttackEnemy()
     {
         if(isAttacking) return; // Prevents the function from executing if already attacking
@@ -127,6 +139,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isAttacking", false);
         isAttacking = false;
         isChasingEnemy = true;
+        yield return new WaitForSeconds(attackDelay);
     }
     
     private void PlayRandomAttackSound()

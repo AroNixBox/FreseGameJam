@@ -56,6 +56,10 @@ public class GameManager : MonoBehaviour
     {
         playerKills += 1;
         killCount.text = "x" + playerKills;
+        if (playerKills % 10 == 0)
+        {
+            GetComponent<SharkSpawner>().SpawnOrca();
+        }
     }
 
     public void UpdateCrew()

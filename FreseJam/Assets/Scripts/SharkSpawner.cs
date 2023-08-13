@@ -4,6 +4,7 @@ using UnityEngine;
 public class SharkSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject sharkPrefab;
+    [SerializeField] private GameObject orcabossPrefab;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private float initialSpawnDelay = 10f;
     [SerializeField] private float spawnReductionRate = 0.95f;
@@ -26,7 +27,16 @@ public class SharkSpawner : MonoBehaviour
             currentSpawnDelay *= spawnReductionRate;
             if (currentSpawnDelay < minimumSpawnDelay)
                 currentSpawnDelay = minimumSpawnDelay;
+            
+            
         }
+    }
+
+    public void SpawnOrca()
+    {
+        int randomIndex = Random.Range(0, spawnPoints.Length);
+        Transform chosenSpawnPoint = spawnPoints[randomIndex];
+        Instantiate(orcabossPrefab, chosenSpawnPoint.position, chosenSpawnPoint.rotation);
     }
 
     private void SpawnShark()
