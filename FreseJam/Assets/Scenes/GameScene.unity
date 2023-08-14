@@ -11535,7 +11535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 219694424739284466, guid: 23d3add0bcd53ab45b12db346e8704fe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 219694424739284466, guid: 23d3add0bcd53ab45b12db346e8704fe, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11564,6 +11564,14 @@ PrefabInstance:
     - target: {fileID: 219694424739284466, guid: 23d3add0bcd53ab45b12db346e8704fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 219694424739284467, guid: 23d3add0bcd53ab45b12db346e8704fe, type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 219694424739284467, guid: 23d3add0bcd53ab45b12db346e8704fe, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 219694424739284470, guid: 23d3add0bcd53ab45b12db346e8704fe, type: 3}
       propertyPath: _DitheringScale
