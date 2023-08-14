@@ -978,7 +978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 219694424739284467, guid: 23d3add0bcd53ab45b12db346e8704fe, type: 3}
       propertyPath: m_ClearFlags
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 219694424739284467, guid: 23d3add0bcd53ab45b12db346e8704fe, type: 3}
       propertyPath: orthographic
@@ -1120,6 +1120,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!45 &98269680
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98269668}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: d9a12ffaaa5dd67418211def4dfaee9a, type: 2}
 --- !u!4 &108060738 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4731679933117678170, guid: ebb8f06e210f0e44aaa9b702256e764a, type: 3}
@@ -8177,7 +8186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 219694424739284467, guid: 23d3add0bcd53ab45b12db346e8704fe, type: 3}
       propertyPath: m_ClearFlags
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 219694424739284467, guid: 23d3add0bcd53ab45b12db346e8704fe, type: 3}
       propertyPath: orthographic
@@ -9136,6 +9145,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera1: {fileID: 2091132280}
   camera2: {fileID: 98269673}
+--- !u!45 &2091132285
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091132276}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: d9a12ffaaa5dd67418211def4dfaee9a, type: 2}
 --- !u!1 &2104674900
 GameObject:
   m_ObjectHideFlags: 0
