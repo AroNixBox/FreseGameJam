@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log(PlayerPrefs.GetInt("highscore"));
         if (Instance == null)
         {
             Instance = this;

@@ -1,39 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class HighScores : MonoBehaviour
 {
-    const string privateCode = "KfIMivUTBEuT--9hPnMESw6CXVWrZpbUO_BU2L9BYHOg";  //Key to Upload New Info
-    const string publicCode = "64da39f28f40bb0ee0531f43";   //Key to download
-    const string webURL = "http://dreamlo.com/lb/"; //  Website the keys are for
+    const string privateCode = "E2UYf8AX0Uymy_fmgNJkDwggbWQ4yLykOSv6jCDInjEw";
+    const string publicCode = "64daa16e778d3cc2703ef0a9";
+    const string webURL = "https://www.dreamlo.com/lb/";
 
     public PlayerScore[] scoreList;
     DisplayHighscores myDisplay;
 
-    static HighScores instance; //Required for STATIC usability
+    static HighScores instance;
     void Awake()
     {
-        instance = this; //Sets Static Instance
+        instance = this;
         myDisplay = GetComponent<DisplayHighscores>();
     }
     
-    public static void UploadScore(string username, int score)  //CALLED when Uploading new Score to WEBSITE
-    {//STATIC to call from other scripts easily
-        instance.StartCoroutine(instance.DatabaseUpload(username,score)); //Calls Instance
+    public static void UploadScore(string username, int score)
+    {
+        instance.StartCoroutine(instance.DatabaseUpload(username,score));
     }
 
-    IEnumerator DatabaseUpload(string userame, int score) //Called when sending new score to Website
+    IEnumerator DatabaseUpload(string userame, int score)
     {
-        WWW www = new WWW(webURL + privateCode + "/add/" + WWW.EscapeURL(userame) + "/" + score);
-        yield return www;
+        UnityWebRequest www = UnityWebRequest.Get(webURL + privateCode + "/add/" + UnityWebRequest.EscapeURL(userame) + "/" + score);
 
-        if (string.IsNullOrEmpty(www.error))
+        yield return www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            print("Error uploading: " + www.error);
+        }
+        else
         {
             print("Upload Successful");
             DownloadScores();
         }
-        else print("Error uploading" + www.error);
     }
 
     public void DownloadScores()
@@ -42,23 +47,26 @@ public class HighScores : MonoBehaviour
     }
     IEnumerator DatabaseDownload()
     {
-        //WWW www = new WWW(webURL + publicCode + "/pipe/"); //Gets the whole list
-        WWW www = new WWW(webURL + publicCode + "/pipe/0/10"); //Gets top 10
-        yield return www;
 
-        if (string.IsNullOrEmpty(www.error))
+        UnityWebRequest www = UnityWebRequest.Get(webURL + publicCode + "/pipe/0/10");
+        yield return www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success)
         {
-            OrganizeInfo(www.text);
+            print("Error downloading: " + www.error);
+        }
+        else
+        {
+            OrganizeInfo(www.downloadHandler.text);
             myDisplay.SetScoresToMenu(scoreList);
         }
-        else print("Error uploading" + www.error);
     }
 
-    void OrganizeInfo(string rawData) //Divides Scoreboard info by new lines
+    void OrganizeInfo(string rawData)
     {
         string[] entries = rawData.Split(new char[] {'\n'}, System.StringSplitOptions.RemoveEmptyEntries);
         scoreList = new PlayerScore[entries.Length];
-        for (int i = 0; i < entries.Length; i ++) //For each entry in the string array
+        for (int i = 0; i < entries.Length; i ++)
         {
             string[] entryInfo = entries[i].Split(new char[] {'|'});
             string username = entryInfo[0];
@@ -69,7 +77,7 @@ public class HighScores : MonoBehaviour
     }
 }
 
-public struct PlayerScore //Creates place to store the variables for the name and score of each player
+public struct PlayerScore
 {
     public string username;
     public int score;

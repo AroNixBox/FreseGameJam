@@ -98,20 +98,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
             enemyTarget = other.gameObject.transform;
             enemyHealth = other.gameObject.GetComponent<IHealth>();
-            agent.SetDestination(enemyTarget.position);
-            AttackEnemy();
-            isChasingEnemy = true;
-        }
-    }
+            if (enemyHealth != null && enemyTarget != null)
+            {
+                agent.SetDestination(enemyTarget.position);
+                AttackEnemy();
+                isChasingEnemy = true;
+            }
 
-    private void OnTriggerStay(Collider other)
-    {
+        }
         if (other.gameObject.CompareTag("OrcaBoss"))
         {
             enemyTarget = other.gameObject.transform;

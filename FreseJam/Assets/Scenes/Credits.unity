@@ -376,6 +376,70 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3850647964561639101, guid: 414d22ca230b6964181c1e2b8166833b, type: 3}
+      propertyPath: m_text
+      value: "Programming,\nIntro-Scene\n\nLevel Design\n\n3DArt & Animation\n\n\nSound\n\nAnimations
+        \n\nShader \n\n\n\n\n\n\nTextures\n\n\nBoat Model\n\n\nVFX"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850647964561639101, guid: 414d22ca230b6964181c1e2b8166833b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7ac5f15f603765f41879a1e71bfbdf8c, type: 2}
+    - target: {fileID: 3850647964561639101, guid: 414d22ca230b6964181c1e2b8166833b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 969196896186001154, guid: 7ac5f15f603765f41879a1e71bfbdf8c, type: 2}
+    - target: {fileID: 3850647964561639101, guid: 414d22ca230b6964181c1e2b8166833b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850647965337352391, guid: 414d22ca230b6964181c1e2b8166833b, type: 3}
+      propertyPath: m_text
+      value: 'Nixon
+
+
+
+        Simon
+
+
+        Lev, Lennard
+
+
+
+        Weloveindies.com
+
+
+        Mixamo.com
+
+
+        PSX
+        Shader Kit: https://assetstore.unity.com/packages/vfx/shaders/psx-shader-kit-183591?aid=1101l9Bhe&utm_campaign=unity_affiliate&utm_medium=affiliate&utm_source=partnerize-linkmaker
+
+
+        Pixabay.com
+
+        Unity
+        Asset Store
+
+
+        Polygon - Sampler Pack (unity Asset Store)
+
+
+        Blood:
+        POLYGON Particle FX - Low Poly 3D Art by Synty'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850647965337352391, guid: 414d22ca230b6964181c1e2b8166833b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 3850647965337352391, guid: 414d22ca230b6964181c1e2b8166833b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 3850647965337352391, guid: 414d22ca230b6964181c1e2b8166833b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3850647965372553810, guid: 414d22ca230b6964181c1e2b8166833b, type: 3}
       propertyPath: m_Name
       value: CreditCanvas
@@ -463,6 +527,18 @@ PrefabInstance:
     - target: {fileID: 3850647965372553814, guid: 414d22ca230b6964181c1e2b8166833b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850647966008459099, guid: 414d22ca230b6964181c1e2b8166833b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -146.44672
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770861833965835097, guid: 414d22ca230b6964181c1e2b8166833b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 508.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770861833965835097, guid: 414d22ca230b6964181c1e2b8166833b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 286.07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 414d22ca230b6964181c1e2b8166833b, type: 3}
